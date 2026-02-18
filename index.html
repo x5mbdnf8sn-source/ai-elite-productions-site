@@ -14,46 +14,127 @@
             background-color: #0f172a;
             color: #f8fafc;
             margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn {
-            animation: fadeIn 0.5s ease-out forwards;
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-slideUp {
-            animation: slideUp 0.4s ease-out forwards;
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.4);
         }
     </style>
-    <!-- Babel standalone for in-browser transpilation of TSX/JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "react": "https://esm.sh/react@^19.2.4",
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>
 </head>
 <body>
-    <div id="root"></div>
-    <!-- Tell Babel to process this script as a module -->
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 glass-nav px-4 py-3">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div id="logo" class="flex items-center space-x-2 cursor-pointer group">
+                <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center font-black text-white text-xl shadow-lg group-hover:scale-110 transition-transform">
+                    E
+                </div>
+                <span class="text-2xl font-black tracking-tighter text-white">ELITE<span class="text-cyan-500">PROD</span></span>
+            </div>
+
+            <div class="relative w-full md:max-w-md">
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search for games..."
+                    class="w-full bg-slate-900 border border-slate-700 text-slate-100 px-10 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all placeholder-slate-500"
+                />
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Home Section -->
+        <div id="home-section" class="space-y-8">
+            <header class="text-center space-y-4 py-4">
+                <h1 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 tracking-tighter">
+                    ELITE PRODUCTIONS
+                </h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    The premium unblocked gaming portal. Fast, curated, and always available.
+                </p>
+            </header>
+
+            <div id="category-bar" class="flex overflow-x-auto no-scrollbar pb-2 space-x-3 items-center justify-center">
+                <!-- Categories will be injected here -->
+            </div>
+
+            <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fadeIn">
+                <!-- Games will be injected here -->
+            </div>
+            
+            <div id="no-results" class="hidden text-center py-20 bg-slate-900/50 rounded-2xl border border-slate-800">
+                <p class="text-slate-500 text-xl">No games found matching your criteria.</p>
+                <button id="clear-filters" class="mt-4 text-cyan-400 hover:text-cyan-300 font-bold uppercase text-sm tracking-wider">Clear All Filters</button>
+            </div>
+        </div>
+
+        <!-- Game View Section -->
+        <div id="game-view-section" class="hidden animate-fadeIn space-y-6">
+            <div class="flex items-center justify-between">
+                <button id="back-btn" class="flex items-center text-slate-400 hover:text-white font-bold transition-colors group">
+                    <svg class="w-6 h-6 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    BACK TO HUB
+                </button>
+                <button id="fullscreen-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-800">
+                <iframe id="game-iframe" class="w-full h-full border-0" allowfullscreen allow="autoplay; fullscreen; pointer-lock"></iframe>
+            </div>
+
+            <div id="game-info" class="pt-4 space-y-4">
+                <!-- Game info injected here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 px-4 mt-12">
+        <div class="container mx-auto text-center">
+            <h3 class="text-xl font-black text-white mb-2">ELITE PRODUCTIONS</h3>
+            <p class="text-slate-500 text-sm mb-6">Unblocked entertainment for everyone.</p>
+            <div class="text-slate-600 text-[10px] uppercase tracking-[0.2em]">
+                &copy; 2025 Elite Productions • All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
