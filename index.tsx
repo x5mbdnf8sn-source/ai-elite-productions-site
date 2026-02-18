@@ -12,12 +12,9 @@ const mountApp = () => {
       </React.StrictMode>
     );
   } else {
-    console.error("Failed to find the root element to mount the application.");
+    console.error("Failed to find root element.");
   }
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', mountApp);
-} else {
-  mountApp();
-}
+// Execute immediately as Babel script tags are deferred by default
+mountApp();
