@@ -1,0 +1,67 @@
+
+[
+  {
+    "id": "slope",
+    "title": "Slope",
+    "description": "A high-speed physics-based ball game. Dodge obstacles and stay on the track!",
+    "category": "Arcade",
+    "thumbnail": "https://picsum.photos/seed/slope/400/300",
+    "iframeUrl": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/rabbid76/slope-game@master/slope.xml"
+  },
+  {
+    "id": "tetris",
+    "title": "Retro Tetris",
+    "description": "The classic block-stacking puzzle game we all know and love.",
+    "category": "Puzzle",
+    "thumbnail": "https://picsum.photos/seed/tetris/400/300",
+    "iframeUrl": "https://dashing-donuts-077755.netlify.app/"
+  },
+  {
+    "id": "retro-bowl",
+    "title": "Retro Bowl",
+    "description": "Manage your own football team and lead them to the championship.",
+    "category": "Sports",
+    "thumbnail": "https://picsum.photos/seed/football/400/300",
+    "iframeUrl": "https://game316009.konggames.com/gameplayer.html"
+  },
+  {
+    "id": "drift-hunters",
+    "title": "Drift Hunters",
+    "description": "Realistic car drifting simulator with various cars and tracks.",
+    "category": "Sports",
+    "thumbnail": "https://picsum.photos/seed/car/400/300",
+    "iframeUrl": "https://v6p9d9t4.ssl.hwcdn.net/html/1453224/index.html"
+  },
+  {
+    "id": "2048",
+    "title": "2048",
+    "description": "Merge the tiles to reach the 2048 square in this addictive puzzle.",
+    "category": "Puzzle",
+    "thumbnail": "https://picsum.photos/seed/2048/400/300",
+    "iframeUrl": "https://play2048.co/"
+  },
+  {
+    "id": "cookie-clicker",
+    "title": "Cookie Clicker",
+    "description": "The quintessential idle game. Bake all the cookies!",
+    "category": "Strategy",
+    "thumbnail": "https://picsum.photos/seed/cookie/400/300",
+    "iframeUrl": "https://orteil.dashnet.org/cookieclicker/"
+  },
+  {
+    "id": "run-3",
+    "title": "Run 3",
+    "description": "Run through space tunnels and defy gravity.",
+    "category": "Action",
+    "thumbnail": "https://picsum.photos/seed/run3/400/300",
+    "iframeUrl": "https://h6qzml.github.io/run-3/"
+  },
+  {
+    "id": "shell-shockers",
+    "title": "Shell Shockers",
+    "description": "The world's first egg-based FPS. Pick a class and scramble your enemies.",
+    "category": "Multiplayer",
+    "thumbnail": "https://picsum.photos/seed/egg/400/300",
+    "iframeUrl": "https://shellshock.io/"
+  }
+]
