@@ -14,112 +14,43 @@
             background-color: #0f172a;
             color: #f8fafc;
             margin: 0;
-            overflow-x: hidden;
         }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
-
-        .game-card:hover .play-button { transform: translateX(4px); }
-        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
-        
-        iframe {
-            background: #000;
-            border-radius: 1rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slideUp {
+            animation: slideUp 0.4s ease-out forwards;
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react/": "https://esm.sh/react@^19.2.4/"
-  }
-}
-</script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.4",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react-dom": "https://esm.sh/react-dom@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+      }
+    }
+    </script>
 </head>
-<body class="min-h-screen flex flex-col">
-
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 glass border-b border-slate-800 px-4 py-3">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div id="logo" class="flex items-center space-x-2 cursor-pointer group">
-                <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center font-black text-white text-xl shadow-lg group-hover:scale-110 transition-transform">E</div>
-                <span class="text-2xl font-black tracking-tighter text-white">ELITE<span class="text-cyan-500">PROD</span></span>
-            </div>
-
-            <div class="relative w-full md:max-w-md group">
-                <input type="text" id="search-input" placeholder="Search for games..." class="w-full bg-slate-900 border border-slate-700 text-slate-100 px-10 py-2.5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all placeholder-slate-500">
-                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-8">
-        
-        <!-- Gallery View -->
-        <div id="gallery-view" class="space-y-8 animate-fadeIn">
-            <header class="text-center space-y-4 py-6">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 tracking-tighter uppercase">Elite Productions</h1>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg">Curated, high-performance unblocked games.</p>
-            </header>
-
-            <!-- Categories -->
-            <div id="category-bar" class="flex overflow-x-auto no-scrollbar pb-2 space-x-3 items-center justify-center">
-                <!-- Categories injected by JS -->
-            </div>
-
-            <!-- Games Grid -->
-            <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Games injected by JS -->
-            </div>
-        </div>
-
-        <!-- Player View (Hidden by default) -->
-        <div id="player-view" class="hidden animate-fadeIn space-y-6">
-            <div class="flex items-center justify-between">
-                <button id="back-button" class="flex items-center text-slate-400 hover:text-white font-black text-sm transition-colors group">
-                    <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    BACK TO HUB
-                </button>
-                <button id="fullscreen-button" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white font-bold transition-all text-xs">FULLSCREEN</button>
-            </div>
-            
-            <div class="relative w-full aspect-video bg-black rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-slate-800">
-                <iframe id="game-frame" src="" class="w-full h-full border-0" allowfullscreen allow="autoplay; fullscreen; pointer-lock"></iframe>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6">
-                <div class="lg:col-span-2 space-y-4">
-                    <h2 id="player-title" class="text-4xl font-black text-white">Game Title</h2>
-                    <div class="flex gap-2">
-                        <span id="player-category" class="px-3 py-1 bg-cyan-600/20 text-cyan-400 text-[10px] font-black rounded-lg border border-cyan-500/30 uppercase tracking-widest">Category</span>
-                    </div>
-                    <p id="player-description" class="text-slate-400 text-xl leading-relaxed">Description goes here...</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900/50 border-t border-slate-800 py-12 px-4 mt-12">
-        <div class="container mx-auto text-center">
-           <h3 class="text-2xl font-black text-cyan-500 mb-2 tracking-tighter">ELITE PRODUCTIONS</h3>
-           <p class="text-slate-500 text-sm max-w-md mx-auto mb-8 tracking-tight">The ultimate portal for unblocked web entertainment.</p>
-           <div class="text-slate-600 text-[10px] uppercase tracking-widest font-bold">
-             &copy; 2025 Elite Productions
-           </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<body>
+    <div id="root"></div>
+    <!-- Entry point for the application -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

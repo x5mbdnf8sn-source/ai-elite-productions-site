@@ -5,24 +5,24 @@
     "title": "Slope",
     "description": "A high-speed physics-based ball game. Dodge obstacles and stay on the track!",
     "category": "Arcade",
-    "thumbnail": "https://picsum.photos/seed/slope/400/300",
-    "iframeUrl": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/rabbid76/slope-game@master/slope.xml"
+    "thumbnail": "https://images.crazygames.com/slope.png?auto=format,compress&q=75&cs=strip&ch=DPR&w=1200&h=630&fit=crop",
+    "iframeUrl": "https://y8.com/embed/slope"
   },
   {
-    "id": "tetris",
-    "title": "Retro Tetris",
-    "description": "The classic block-stacking puzzle game we all know and love.",
-    "category": "Puzzle",
-    "thumbnail": "https://picsum.photos/seed/tetris/400/300",
-    "iframeUrl": "https://dashing-donuts-077755.netlify.app/"
+    "id": "funny-shooter-2",
+    "title": "Funny Shooter 2",
+    "description": "A hilarious and fast-paced first-person shooter where you fight waves of wacky enemies. Upgrade your arsenal and survive the absurd chaos.",
+    "category": "Action",
+    "thumbnail": "https://images.crazygames.com/funny-shooter-2/20221102140409/funny-shooter-2-cover?auto=format%2Ccompress&q=45&cs=strip&ch=DPR&w=1200&h=630&fit=crop",
+    "iframeUrl": "https://archive.org/embed/funny-shooter-2"
   },
   {
     "id": "retro-bowl",
     "title": "Retro Bowl",
-    "description": "Manage your own football team and lead them to the championship.",
+    "description": "Manage your own football team and lead them to the championship in this retro-styled sports classic.",
     "category": "Sports",
-    "thumbnail": "https://picsum.photos/seed/football/400/300",
-    "iframeUrl": "https://game316009.konggames.com/gameplayer.html"
+    "thumbnail": "https://images.crazygames.com/retro-bowl/20221013143522/retro-bowl-cover?auto=format%2Ccompress&q=45&cs=strip&ch=DPR&w=1200&h=630&fit=crop",
+    "iframeUrl": "./retro-bowl.html"
   },
   {
     "id": "drift-hunters",
