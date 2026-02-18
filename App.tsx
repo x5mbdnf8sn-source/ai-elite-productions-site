@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import Navbar from './components/Navbar';
-import GameCard from './components/GameCard';
-import GameView from './components/GameView';
-import CategoryBar from './components/CategoryBar';
+import Navbar from './components/Navbar.tsx';
+import GameCard from './components/GameCard.tsx';
+import GameView from './components/GameView.tsx';
+import CategoryBar from './components/CategoryBar.tsx';
 
 export const CATEGORIES = ['All', 'Action', 'Sports', 'Puzzle', 'Strategy', 'Arcade', 'Multiplayer'];
 

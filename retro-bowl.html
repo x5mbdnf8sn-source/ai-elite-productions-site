@@ -1,77 +1,146 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <title>Retro Bowl</title>
-    <link rel="shortcut icon" type="image/jpg" 
-    href="retrobowl.png"/>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retro Bowl | Elite Productions</title>
+    <link rel="shortcut icon" type="image/jpg" href="retrobowl.png"/>
     <script src='everypage.js'></script>
-  </head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .header-nav {
+            width: 100%;
+            background: #1e293b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        button, a {
+            background: #334155;
+            color: #f8fafc;
+            border: 1px solid #475569;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        button:hover, a:hover {
+            background: #0ea5e9;
+            border-color: #38bdf8;
+            transform: translateY(-1px);
+        }
+        .game-container {
+            width: 95vw;
+            max-width: 1200px;
+            margin: 20px 0;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #334155;
+        }
+        iframe {
+            width: 100%;
+            height: 75vh;
+            border: none;
+        }
+        #servers {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        h3 {
+            margin: 10px 0;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+        .server-btn {
+            background: #1e293b;
+        }
+        .server-btn.active {
+            background: #0ea5e9;
+            color: white;
+        }
+    </style>
+</head>
 <body onload='focus()'>
-<style>
-html, body{
-width: 100%;
-height: 100%;
-background-color: #0f172a;
-color: white;
-font-family: sans-serif;
-padding: 10px;
-box-sizing: border-box;
-}
-button, a {
-  background: #1e293b;
-  color: white;
-  border: 1px solid #334155;
-  padding: 5px 10px;
-  text-decoration: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 5px;
-}
-button:hover, a:hover {
-  background: #334155;
-}
-#servers {
-  margin-top: 10px;
-}
-iframe {
-  background: black;
-  border-radius: 8px;
-}
-</style>
-<script src="load.js"></script>
-<a href=".." style='font-size: 1.25rem;'>Back To Home Page</a>
-<button onclick="openFullscreen('518929564')" style='font-size: 1.25rem;'>Fullscreen Mode</button>     
-<br>
-<div id='servers'>
+    <script src="load.js"></script>
+    <div class="header-nav">
+        <a href="index.html">← Back to Elite Hub</a>
+        <div class="controls">
+            <button onclick="openFullscreen('518929564')">⛶ Fullscreen</button>
+        </div>
+    </div>
 
-</div>
+    <div id='servers'></div>
 
-<h3>Playing On Server: <span id='currentServer'></span></h3>
+    <h3>Server: <span id='currentServer'>1</span></h3>
 
-<iframe style='height: 80vh; width: 95vw;' frameborder="0" id="518929564" allowtransparency="true" 
-        src=""></iframe>
-<br>
-<script>
-document.getElementById('518929564').src='https://debbiewatermanphd.com/uploads/5/5/6/7/5567194/custom_themes/230188292910318641/files/rb1.html';
-document.getElementById('currentServer').innerHTML = '1';
+    <div class="game-container">
+        <iframe frameborder="0" id="518929564" allowtransparency="true" src=""></iframe>
+    </div>
 
-const links = [['https://debbiewatermanphd.com/uploads/5/5/6/7/5567194/custom_themes/230188292910318641/files/rb1.html', 'v.1'], 
-['https://962b3c82-da73-4819-afc0-70683afd7ded.id.repl.co/','v.2'], ['../g/retrobowl/index.html','v.3']];
+    <script src="fullScreen.js"></script>
+    <script>
+        const iframe = document.getElementById('518929564');
+        const serverSpan = document.getElementById('currentServer');
+        
+        // Use the URLs provided in your request
+        const links = [
+            ['https://debbiewatermanphd.com/uploads/5/5/6/7/5567194/custom_themes/230188292910318641/files/rb1.html', 'v.1'], 
+            ['https://962b3c82-da73-4819-afc0-70683afd7ded.id.repl.co/', 'v.2'], 
+            ['../g/retrobowl/index.html', 'v.3']
+        ];
 
-links.forEach(server);
+        // Set initial server
+        iframe.src = links[0][0];
 
-function server(item, index) {
-window[("s"+(index+1))] = function(){
-document.getElementById('518929564').src= item[0];
-document.getElementById('currentServer').innerHTML = (index+1);
-document.getElementById('518929564').focus();
- }
-document.getElementById('servers').innerHTML += "<button style='font-size: 1rem;' onclick="+("s"+(index+1))+"()>"+item[1]+"</button>";
-}
-</script>
-<script src="fullScreen.js"></script>
-<script>
-function focus() {document.getElementById('518929564').focus();}
-</script>
+        links.forEach((item, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'server-btn';
+            btn.innerText = item[1];
+            btn.onclick = () => {
+                iframe.src = item[0];
+                serverSpan.innerHTML = (index + 1);
+                iframe.focus();
+                // Update active state
+                document.querySelectorAll('.server-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            };
+            if(index === 0) btn.classList.add('active');
+            document.getElementById('servers').appendChild(btn);
+        });
+
+        function focus() {
+            iframe.focus();
+        }
+    </script>
 </body>
 </html>
